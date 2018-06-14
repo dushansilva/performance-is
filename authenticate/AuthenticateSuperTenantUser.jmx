@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="noOfUsers" elementType="Argument">
             <stringProp name="Argument.name">noOfUsers</stringProp>
-            <stringProp name="Argument.value">100000</stringProp>
+            <stringProp name="Argument.value">2000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timeToRun" elementType="Argument">
@@ -35,7 +35,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="is_host" elementType="Argument">
             <stringProp name="Argument.name">is_host</stringProp>
-            <stringProp name="Argument.value">192.168.57.187</stringProp>
+            <stringProp name="Argument.value">ec2-34-224-218-167.compute-1.amazonaws.com</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="is_port" elementType="Argument">
@@ -56,7 +56,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="usernamePrefix" elementType="Argument">
             <stringProp name="Argument.name">usernamePrefix</stringProp>
-            <stringProp name="Argument.value">is54user_</stringProp>
+            <stringProp name="Argument.value">is560user_</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="password" elementType="Argument">
@@ -101,7 +101,7 @@
           <stringProp name="variableName">user_count_id</stringProp>
         </RandomVariableConfig>
         <hashTree/>
-        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+        <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="false">
           <stringProp name="filename"></stringProp>
           <stringProp name="parameters"></stringProp>
           <boolProp name="resetInterpreter">false</boolProp>

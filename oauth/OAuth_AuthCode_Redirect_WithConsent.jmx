@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.2 r1790748">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="OAuth2- Authorization Code Redirect With Consent" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="noOfUsers" elementType="Argument">
             <stringProp name="Argument.name">noOfUsers</stringProp>
-            <stringProp name="Argument.value">1000000</stringProp>
+            <stringProp name="Argument.value">2000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="timeToRun" elementType="Argument">
@@ -35,18 +35,18 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="is_host" elementType="Argument">
             <stringProp name="Argument.name">is_host</stringProp>
-            <stringProp name="Argument.value">idp.wso2.com</stringProp>
+            <stringProp name="Argument.value">ec2-34-224-218-167.compute-1.amazonaws.com</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">192.168.48.35</stringProp>
           </elementProp>
           <elementProp name="is_port" elementType="Argument">
             <stringProp name="Argument.name">is_port</stringProp>
-            <stringProp name="Argument.value">9443</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="callbackURL" elementType="Argument">
             <stringProp name="Argument.name">callbackURL</stringProp>
-            <stringProp name="Argument.value">https://localhost/callback1</stringProp>
+            <stringProp name="Argument.value">https://www.google.com</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -56,19 +56,19 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="consumerKey" elementType="Argument">
             <stringProp name="Argument.name">consumerKey</stringProp>
-            <stringProp name="Argument.value">consumerKey_1</stringProp>
+            <stringProp name="Argument.value">697fX2YGFXASdw4c37KNUzTYitAa</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">Vd6LfYgQgV2qrWOVTfC0R6XvitMa     consumerkey1    PynsfXiuKCznvNYoTXEMe4T3ih8a</stringProp>
           </elementProp>
           <elementProp name="consumerSecret" elementType="Argument">
             <stringProp name="Argument.name">consumerSecret</stringProp>
-            <stringProp name="Argument.value">consumerSecret_1</stringProp>
+            <stringProp name="Argument.value">DN_xbddQXrQfT_11MyLFJElwzkIa</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
             <stringProp name="Argument.desc">AL3PjOQZFWmOOTg2aWemKB6WY9Ma     consumersecret1    ZEnpz5NmvLtSqQn9qK125ImgoF8a</stringProp>
           </elementProp>
           <elementProp name="usernamePrefix" elementType="Argument">
             <stringProp name="Argument.name">usernamePrefix</stringProp>
-            <stringProp name="Argument.value">is54user_</stringProp>
+            <stringProp name="Argument.value">is560user_</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="password" elementType="Argument">
@@ -103,22 +103,23 @@
         <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+          <stringProp name="CookieManager.implementation">org.apache.jmeter.protocol.http.control.HC4CookieHandler</stringProp>
         </CookieManager>
         <hashTree/>
-        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable_user" enabled="true">
-          <stringProp name="maximumValue">${noOfUsers}</stringProp>
-          <stringProp name="minimumValue">1</stringProp>
-          <stringProp name="outputFormat"></stringProp>
-          <boolProp name="perThread">true</boolProp>
-          <stringProp name="randomSeed"></stringProp>
-          <stringProp name="variableName">user_count_id</stringProp>
-        </RandomVariableConfig>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="User Index Counter" enabled="true">
+          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.end">${noOfUsers}</stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">user_count_id</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Send request to authorize end poiont" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="client_id" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">${consumerKey}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
@@ -126,7 +127,7 @@
                 <stringProp name="Argument.desc">false</stringProp>
               </elementProp>
               <elementProp name="redirect_uri" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">${callbackURL}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
@@ -134,7 +135,7 @@
                 <stringProp name="Argument.desc">false</stringProp>
               </elementProp>
               <elementProp name="response_type" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">code</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
@@ -143,7 +144,7 @@
               </elementProp>
               <elementProp name="scope" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${scope}</stringProp>
+                <stringProp name="Argument.value">${scope}%20${__Random(1,10000000)}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">scope</stringProp>
@@ -156,7 +157,7 @@
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/oauth2/authorize</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
@@ -166,34 +167,23 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP/1.1 200 OK Response Assertion" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP/1.1 302 Found Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="1747356877">HTTP/1.1 200 OK
-</stringProp>
+              <stringProp name="-161833916">HTTP/1.1 302 Found</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Login Page Verifying Assertion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="-542111160">Sign in</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">2</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor" enabled="true">
-            <stringProp name="XPathExtractor.default"></stringProp>
-            <stringProp name="XPathExtractor.refname">sessionDataKey</stringProp>
-            <stringProp name="XPathExtractor.xpathQuery">//input[@name=&apos;sessionDataKey&apos;]/@value</stringProp>
-            <boolProp name="XPathExtractor.validate">false</boolProp>
-            <boolProp name="XPathExtractor.tolerant">true</boolProp>
-            <boolProp name="XPathExtractor.namespace">false</boolProp>
-            <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
-          </XPathExtractor>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">true</stringProp>
+            <stringProp name="RegexExtractor.refname">sessionDataKey</stringProp>
+            <stringProp name="RegexExtractor.regex">sessionDataKey=(.+?)&amp;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Common Auth Login HTTP Request" enabled="true">
@@ -228,7 +218,55 @@
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">/commonauth</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP/1.1 302 Found Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-161833916">HTTP/1.1 302 Found</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Common Auth Login Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-395913554">commonAuthId</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">true</stringProp>
+            <stringProp name="RegexExtractor.refname">sessionDataKey</stringProp>
+            <stringProp name="RegexExtractor.regex">sessionDataKey=(.+.?)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Common Auth Login HTTP Request Redirect" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${is_host}</stringProp>
+          <stringProp name="HTTPSampler.port">${is_port}</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">oauth2/authorize?sessionDataKey=${sessionDataKey}</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
@@ -241,24 +279,23 @@
 ${password}</stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP/1.1 200 OK Response Assertion" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP/1.1 302 Found Response Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="-1606201635">HTTP/1.1 200 OK</stringProp>
+              <stringProp name="-161833916">HTTP/1.1 302 Found</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">2</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="OAuth Request Sesion Data Key Consent Expression Extractor" enabled="true">
-            <stringProp name="XPathExtractor.default"></stringProp>
-            <stringProp name="XPathExtractor.refname">sessionDataKeyConsent</stringProp>
-            <stringProp name="XPathExtractor.xpathQuery">//input[@type=&apos;hidden&apos;][@name=&apos;sessionDataKeyConsent&apos;]/@value</stringProp>
-            <boolProp name="XPathExtractor.validate">false</boolProp>
-            <boolProp name="XPathExtractor.tolerant">true</boolProp>
-            <boolProp name="XPathExtractor.namespace">false</boolProp>
-            <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
-          </XPathExtractor>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">true</stringProp>
+            <stringProp name="RegexExtractor.refname">sessionDataKeyConsent</stringProp>
+            <stringProp name="RegexExtractor.regex">sessionDataKeyConsent=(.+?)&amp;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">FALSE</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Authorization Code" enabled="true">
@@ -296,6 +333,15 @@ ${password}</stringProp>
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP/1.1 302 Found Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-161833916">HTTP/1.1 302 Found</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
           <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="OAuthorization Code Extractor" enabled="true">
             <stringProp name="RegexExtractor.useHeaders">true</stringProp>
             <stringProp name="RegexExtractor.refname">code</stringProp>
@@ -306,15 +352,6 @@ ${password}</stringProp>
             <stringProp name="TestPlan.comments">code=([a-z0-9-]+)\&amp;?</stringProp>
             <stringProp name="Sample.scope">all</stringProp>
           </RegexExtractor>
-          <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="false">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="103171775">HTTP/1.1 200</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
-            <boolProp name="Assertion.assume_success">true</boolProp>
-            <intProp name="Assertion.test_type">2</intProp>
-          </ResponseAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get access token" enabled="true">
@@ -394,7 +431,7 @@ ${password}</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -460,7 +497,7 @@ ${password}</stringProp>
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">/home/ubuntu/scripts/results/listenersoff_200_21_9_code.jtl</stringProp>
+        <stringProp name="filename">/home/ubuntu/scripts/results/400_12_9_code_oidc.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
